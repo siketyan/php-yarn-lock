@@ -30,8 +30,11 @@
         }
     },
     "scripts": {
+        "lint": "php-cs-fixer fix -v --dry-run",
+        "fix": "php-cs-fixer fix -v",
         "test": "phpunit ./tests",
         "tests": [
+            "@lint",
             "@test"
         ]
     }
