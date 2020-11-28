@@ -1,0 +1,16 @@
+{
+    "name": "siketyan/yarn-lock",
+    "description": "A Parser Library for yarn.lock in PHP.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Naoki Ikeguchi",
+            "email": "root@siketyan.dev"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+    }
+}
