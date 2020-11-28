@@ -15,5 +15,15 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Siketyan\\YarnLock\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Siketyan\\YarnLock\\": "tests/"
+        }
     }
 }
