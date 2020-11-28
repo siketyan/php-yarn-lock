@@ -12,5 +12,8 @@
     "require": {
     },
     "require-dev": {
+    },
+    "config": {
+        "sort-packages": true
     }
 }
