@@ -27,5 +27,11 @@
         "psr-4": {
             "Siketyan\\YarnLock\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "phpunit ./tests",
+        "tests": [
+            "@test"
+        ]
     }
 }
