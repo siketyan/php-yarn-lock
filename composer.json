@@ -1,0 +1,41 @@
+{
+    "name": "siketyan/yarn-lock",
+    "description": "A Parser Library for yarn.lock in PHP.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Naoki Ikeguchi",
+            "email": "root@siketyan.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpunit/phpunit": "^9.4"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Siketyan\\YarnLock\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Siketyan\\YarnLock\\": "tests/"
+        }
+    },
+    "scripts": {
+        "lint": "php-cs-fixer fix -v --dry-run",
+        "fix": "php-cs-fixer fix -v",
+        "test": "phpunit ./tests",
+        "tests": [
+            "@lint",
+            "@test"
+        ]
+    }
+}
