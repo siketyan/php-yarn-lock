@@ -24,11 +24,6 @@ class YarnLockParser
 
     public function parse(): array
     {
-        return $this->parseBlock();
-    }
-
-    private function parseBlock(): array
-    {
         $block = [];
         $indent = null;
 
@@ -59,7 +54,7 @@ class YarnLockParser
 
             if ($last === ':') {
                 $rest = implode(array_slice($tokens, 0, count($tokens) - 1));
-                $block[$rest] = $this->parseBlock();
+                $block[$rest] = $this->parse();
             } else {
                 $rest = implode(array_slice($tokens, 1));
                 $block[$first] = $rest;
