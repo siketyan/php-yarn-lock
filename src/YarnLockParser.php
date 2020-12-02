@@ -7,7 +7,6 @@ namespace Siketyan\YarnLock;
 class YarnLockParser
 {
     private const INDENT_CHAR = ' ';
-    private const INDENT_WIDTH = 2;
 
     private const TOKEN_HASH = '#';
     private const TOKEN_QUOTE = '"';
@@ -25,15 +24,26 @@ class YarnLockParser
 
     public function parse(): array
     {
-        return $this->parseBlock(0);
+        return $this->parseBlock();
     }
 
-    private function parseBlock(int $indent): array
+    private function parseBlock(): array
     {
         $block = [];
+        $indent = null;
 
         while (($line = $this->walker->read()) !== null) {
-            if (strspn($line, self::INDENT_CHAR) < $indent) {
+            $currentIndent = strspn($line, self::INDENT_CHAR);
+
+            if ($currentIndent === strlen($line)) {
+                $this->walker->step();
+
+                continue;
+            }
+
+            if ($indent === null) {
+                $indent = $currentIndent;
+            } elseif ($currentIndent < $indent) {
                 break;
             }
 
@@ -49,7 +59,7 @@ class YarnLockParser
 
             if ($last === ':') {
                 $rest = implode(array_slice($tokens, 0, count($tokens) - 1));
-                $block[$rest] = $this->parseBlock($indent + self::INDENT_WIDTH);
+                $block[$rest] = $this->parseBlock();
             } else {
                 $rest = implode(array_slice($tokens, 1));
                 $block[$first] = $rest;
