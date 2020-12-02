@@ -6,9 +6,13 @@ namespace Siketyan\YarnLock;
 
 class YarnLock
 {
-    public static function parse(string $buffer, string $eol = "\n"): array
+    private const CRLF = "\r\n";
+    private const LF = "\n";
+
+    public static function parse(string $buffer): array
     {
-        $lines = explode($eol, $buffer);
+        $buffer = str_replace(self::CRLF, self::LF, $buffer);
+        $lines = explode(self::LF, $buffer);
         $walker = new Walker($lines);
         $parser = new YarnLockParser($walker);
 

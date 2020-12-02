@@ -58,7 +58,9 @@ EOS;
         ];
 
         $actual = YarnLock::parse($lock);
+        $crlf = YarnLock::parse(str_replace("\n", "\r\n", $lock));
 
         $this->assertSame($expected, $actual);
+        $this->assertSame($expected, $crlf);
     }
 }
