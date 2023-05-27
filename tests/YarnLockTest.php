@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Siketyan\YarnLock;
 
 use PHPUnit\Framework\TestCase;
+use Siketyan\YarnLock\Berry as Berry;
+use Siketyan\YarnLock\Classic as Classic;
 
 class YarnLockTest extends TestCase
 {
@@ -30,6 +32,10 @@ class YarnLockTest extends TestCase
 
         $this->assertSame($expected, $actual);
         $this->assertSame($expected, $crlf);
+
+        $packages = YarnLock::parsePackages($actual);
+        $this->assertCount(2, $packages);
+        $this->assertContainsOnlyInstancesOf(Classic\Package::class, $packages);
     }
 
     public function testYarn24(): void
@@ -87,6 +93,10 @@ class YarnLockTest extends TestCase
 
         $this->assertSame($expected, $actual);
         $this->assertSame($expected, $crlf);
+
+        $packages = YarnLock::parsePackages($actual);
+        $this->assertCount(4, $packages);
+        $this->assertContainsOnlyInstancesOf(Berry\Package::class, $packages);
     }
 
     public function testYarn35(): void
@@ -144,5 +154,9 @@ class YarnLockTest extends TestCase
 
         $this->assertSame($expected, $actual);
         $this->assertSame($expected, $crlf);
+
+        $packages = YarnLock::parsePackages($actual);
+        $this->assertCount(4, $packages);
+        $this->assertContainsOnlyInstancesOf(Berry\Package::class, $packages);
     }
 }

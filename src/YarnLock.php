@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Siketyan\YarnLock;
 
+use Siketyan\YarnLock\Berry\YarnBerry;
+use Siketyan\YarnLock\Classic\YarnClassic;
 use Symfony\Component\Yaml\Yaml;
 
 class YarnLock
@@ -24,5 +26,29 @@ class YarnLock
         }
 
         return Yaml::parse($buffer);
+    }
+
+    /**
+     * @return list<PackageInterface>
+     */
+    public static function parsePackages(array $yarnLock): array
+    {
+        /** @var list<YarnVersionInterface> $versions */
+        $versions = [
+            new YarnBerry(),
+            new YarnClassic(),
+        ];
+
+        if ($metadata = $yarnLock['__metadata'] ?? null) {
+            unset($yarnLock['__metadata']);
+        }
+
+        foreach ($versions as $version) {
+            if ($version->supports($metadata)) {
+                return $version->packages($yarnLock);
+            }
+        }
+
+        throw new YarnVersionNotSupportedException();
     }
 }
