@@ -42,12 +42,12 @@ class Constraint extends AbstractConstraint
 
         try {
             $offset = Assert::string(Assert::in(0, $parts)) === '' ? 2 : 1;
-            $range = explode(':', implode('@', array_slice($parts, $offset)), 2);
+            $range = explode(':', implode('@', \array_slice($parts, $offset)), 2);
 
             return new self(
-                Assert::nonEmptyString(implode('@', array_slice($parts, 0, $offset))),
+                Assert::nonEmptyString(implode('@', \array_slice($parts, 0, $offset))),
                 Assert::nonEmptyString($range[array_key_last($range)]),
-                count($range) > 1 ? Assert::nonEmptyString($range[array_key_first($range)]) : null,
+                \count($range) > 1 ? Assert::nonEmptyString($range[array_key_first($range)]) : null,
             );
         } catch (AssertionException $e) {
             throw new MalformedYarnLockException($e);

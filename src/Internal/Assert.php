@@ -91,11 +91,13 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function null($value)
+    public static function null($value): mixed
     {
         if ($value !== null) {
             throw new AssertionException('non-null value', 'null');
         }
+
+        return null;
     }
 
     /**
