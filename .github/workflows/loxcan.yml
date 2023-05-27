@@ -10,15 +10,8 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - uses: siketyan/loxcan@v0.3.1
-        with:
-          owner: ${{ github.event.repository.owner.login }}
-          repo: ${{ github.event.repository.name }}
-          base: ${{ github.event.pull_request.base.ref }}
-          head: ${{ github.event.pull_request.head.ref }}
-          issue_number: ${{ github.event.pull_request.number }}
-          token: ${{ github.token }}
+      - uses: siketyan/loxcan@v0.7.0
