@@ -15,28 +15,18 @@ class Package extends AbstractPackage
     public const LINK_HARD = 'hard';
     public const LINK_SOFT = 'soft';
 
-    private string $resolution;
-    private string $languageName;
-    private string $linkType;
-    private ?string $checksum;
-
     /**
      * @phpstan-param Constraints<Constraint> $constraints
      */
     public function __construct(
         Constraints $constraints,
         string $version,
-        string $resolution,
-        string $languageName,
-        string $linkType,
-        ?string $checksum = null,
+        private readonly string $resolution,
+        private readonly string $languageName,
+        private readonly string $linkType,
+        private readonly ?string $checksum = null,
     ) {
         parent::__construct($constraints, $version);
-
-        $this->resolution = $resolution;
-        $this->languageName = $languageName;
-        $this->linkType = $linkType;
-        $this->checksum = $checksum;
     }
 
     public function getResolution(): string

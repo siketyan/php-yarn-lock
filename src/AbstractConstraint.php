@@ -6,15 +6,10 @@ namespace Siketyan\YarnLock;
 
 abstract class AbstractConstraint implements ConstraintInterface
 {
-    private string $name;
-    private string $range;
-
     public function __construct(
-        string $name,
-        string $range,
+        private readonly string $name,
+        private readonly string $range,
     ) {
-        $this->name = $name;
-        $this->range = $range;
     }
 
     public function getName(): string

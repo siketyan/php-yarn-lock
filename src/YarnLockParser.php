@@ -14,12 +14,9 @@ class YarnLockParser
     private const TOKEN_COLON = ':';
     private const TOKEN_EMPTY = '';
 
-    private Walker $walker;
-
     public function __construct(
-        Walker $walker,
+        private readonly Walker $walker,
     ) {
-        $this->walker = $walker;
     }
 
     public function parse(): array
@@ -45,7 +42,7 @@ class YarnLockParser
             $tokens = $this->parseLine($line);
             $this->walker->step();
 
-            if (\count($tokens) === 0) {
+            if ($tokens === []) {
                 continue;
             }
 

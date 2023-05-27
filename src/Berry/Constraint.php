@@ -11,16 +11,12 @@ use Siketyan\YarnLock\MalformedYarnLockException;
 
 class Constraint extends AbstractConstraint
 {
-    private ?string $prefix;
-
     public function __construct(
         string $name,
         string $range,
-        ?string $prefix = null,
+        private readonly ?string $prefix = null,
     ) {
         parent::__construct($name, $range);
-
-        $this->prefix = $prefix;
     }
 
     public function getPrefix(): ?string

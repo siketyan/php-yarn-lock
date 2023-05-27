@@ -9,22 +9,16 @@ use Siketyan\YarnLock\Constraints;
 
 class Package extends AbstractPackage
 {
-    private string $resolvedUrl;
-    private string $integrity;
-
     /**
      * @phpstan-param Constraints<Constraint> $constraints
      */
     public function __construct(
         Constraints $constraints,
         string $version,
-        string $resolution,
-        string $checksum,
+        private readonly string $resolvedUrl,
+        private readonly string $integrity,
     ) {
         parent::__construct($constraints, $version);
-
-        $this->resolvedUrl = $resolution;
-        $this->integrity = $checksum;
     }
 
     public function getResolvedUrl(): string

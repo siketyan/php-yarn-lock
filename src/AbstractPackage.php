@@ -12,21 +12,14 @@ namespace Siketyan\YarnLock;
 class AbstractPackage implements PackageInterface
 {
     /**
-     * @var Constraints<TConstraint>
-     */
-    private Constraints $constraints;
-
-    private string $version;
-
-    /**
      * @phpstan-param Constraints<TConstraint> $constraints
+     *
+     * @param Constraints<ConstraintInterface> $constraints
      */
     public function __construct(
-        Constraints $constraints,
-        string $version,
+        private readonly Constraints $constraints,
+        private readonly string $version,
     ) {
-        $this->constraints = $constraints;
-        $this->version = $version;
     }
 
     /**

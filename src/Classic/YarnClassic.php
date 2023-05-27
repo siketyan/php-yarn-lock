@@ -29,7 +29,7 @@ class YarnClassic implements YarnVersionInterface
         foreach ($yarnLock as $key => $value) {
             try {
                 $packages[] = new Package(
-                    new Constraints(array_map(fn (string $c) => Constraint::parse(trim($c)), explode(',', $key))),
+                    new Constraints(array_map(fn (string $c): Constraint => Constraint::parse(trim($c)), explode(',', $key))),
                     Assert::nonEmptyString(Assert::in('version', $value)),
                     Assert::nonEmptyString(Assert::in('resolved', $value)),
                     Assert::nonEmptyString(Assert::in('integrity', $value)),

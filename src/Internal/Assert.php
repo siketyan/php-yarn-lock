@@ -9,11 +9,9 @@ class Assert
     /**
      * @phpstan-return ($value is int ? int : never)
      *
-     * @param mixed $value
-     *
      * @throws AssertionException
      */
-    public static function int($value): int
+    public static function int(mixed $value): int
     {
         if (!\is_int($value)) {
             throw new AssertionException('int', \gettype($value));
@@ -25,11 +23,9 @@ class Assert
     /**
      * @phpstan-return ($value is positive-int ? positive-int : never)
      *
-     * @param mixed $value
-     *
      * @throws AssertionException
      */
-    public static function positiveInt($value): int
+    public static function positiveInt(mixed $value): int
     {
         if (($i = self::int($value)) <= 0) {
             throw new AssertionException('positive-int', 'negative-int or 0');
@@ -41,11 +37,9 @@ class Assert
     /**
      * @phpstan-return ($value is string ? string : never)
      *
-     * @param mixed $value
-     *
      * @throws AssertionException
      */
-    public static function string($value): string
+    public static function string(mixed $value): string
     {
         if (!\is_string($value)) {
             throw new AssertionException('string', \gettype($value));
@@ -57,11 +51,9 @@ class Assert
     /**
      * @phpstan-return ($value is non-empty-string ? non-empty-string : never)
      *
-     * @param mixed $value
-     *
      * @throws AssertionException
      */
-    public static function nonEmptyString($value): string
+    public static function nonEmptyString(mixed $value): string
     {
         if (($s = self::string($value)) === '') {
             throw new AssertionException('non-empty-string', 'empty string');
@@ -73,25 +65,21 @@ class Assert
     /**
      * @phpstan-return ($value is null|string ? string : never)
      *
-     * @param mixed $value
-     *
      * @throws AssertionException
      */
-    public static function stringOrNull($value): ?string
+    public static function stringOrNull(mixed $value): ?string
     {
         try {
             return self::string($value);
-        } catch (AssertionException $_) {
+        } catch (AssertionException) {
             return self::null($value);
         }
     }
 
     /**
-     * @param mixed $value
-     *
      * @throws AssertionException
      */
-    public static function null($value): mixed
+    public static function null(mixed $value): mixed
     {
         if ($value !== null) {
             throw new AssertionException('non-null value', 'null');
@@ -125,13 +113,12 @@ class Assert
      * @phpstan-param TKey        $needle
      *
      * @param array<TKey, TValue> $haystack
-     * @param mixed               $needle
      *
      * @return never|TValue
      *
      * @throws AssertionException
      */
-    public static function in($needle, array $haystack)
+    public static function in(mixed $needle, array $haystack)
     {
         if (!\array_key_exists($needle, $haystack)) {
             throw new AssertionException("array contains key {$needle}", 'array without the key');

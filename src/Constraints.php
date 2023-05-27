@@ -10,17 +10,11 @@ namespace Siketyan\YarnLock;
 class Constraints
 {
     /**
-     * @var list<TConstraint>
-     */
-    private array $constraints;
-
-    /**
      * @param non-empty-list<TConstraint> $constraints
      */
     public function __construct(
-        array $constraints = [],
+        private readonly array $constraints = [],
     ) {
-        $this->constraints = $constraints;
     }
 
     public function first(): ConstraintInterface

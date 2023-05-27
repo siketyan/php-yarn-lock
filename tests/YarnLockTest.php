@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Siketyan\YarnLock;
 
 use PHPUnit\Framework\TestCase;
+use Siketyan\YarnLock\Classic\Package;
 
 class YarnLockTest extends TestCase
 {
@@ -33,7 +34,7 @@ class YarnLockTest extends TestCase
 
         $packages = YarnLock::parsePackages($actual);
         $this->assertCount(2, $packages);
-        $this->assertContainsOnlyInstancesOf(Classic\Package::class, $packages);
+        $this->assertContainsOnlyInstancesOf(Package::class, $packages);
     }
 
     public function testYarn24(): void
