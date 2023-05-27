@@ -18,7 +18,7 @@ class Constraints
      * @param non-empty-list<TConstraint> $constraints
      */
     public function __construct(
-        array $constraints = []
+        array $constraints = [],
     ) {
         $this->constraints = $constraints;
     }

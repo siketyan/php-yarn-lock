@@ -29,7 +29,7 @@ class Package extends AbstractPackage
         string $resolution,
         string $languageName,
         string $linkType,
-        ?string $checksum = null
+        ?string $checksum = null,
     ) {
         parent::__construct($constraints, $version);
 

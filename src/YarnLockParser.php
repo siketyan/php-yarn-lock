@@ -17,7 +17,7 @@ class YarnLockParser
     private Walker $walker;
 
     public function __construct(
-        Walker $walker
+        Walker $walker,
     ) {
         $this->walker = $walker;
     }

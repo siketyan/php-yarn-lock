@@ -9,6 +9,8 @@ class Assert
     /**
      * @phpstan-return ($value is int ? int : never)
      *
+     * @param mixed $value
+     *
      * @throws AssertionException
      */
     public static function int($value): int
@@ -22,6 +24,8 @@ class Assert
 
     /**
      * @phpstan-return ($value is positive-int ? positive-int : never)
+     *
+     * @param mixed $value
      *
      * @throws AssertionException
      */
@@ -37,6 +41,8 @@ class Assert
     /**
      * @phpstan-return ($value is string ? string : never)
      *
+     * @param mixed $value
+     *
      * @throws AssertionException
      */
     public static function string($value): string
@@ -50,6 +56,8 @@ class Assert
 
     /**
      * @phpstan-return ($value is non-empty-string ? non-empty-string : never)
+     *
+     * @param mixed $value
      *
      * @throws AssertionException
      */
@@ -65,6 +73,8 @@ class Assert
     /**
      * @phpstan-return ($value is null|string ? string : never)
      *
+     * @param mixed $value
+     *
      * @throws AssertionException
      */
     public static function stringOrNull($value): ?string
@@ -77,7 +87,7 @@ class Assert
     }
 
     /**
-     * @return null
+     * @param mixed $value
      *
      * @throws AssertionException
      */
@@ -86,8 +96,6 @@ class Assert
         if ($value !== null) {
             throw new AssertionException('non-null value', 'null');
         }
-
-        return null;
     }
 
     /**
@@ -115,6 +123,7 @@ class Assert
      * @phpstan-param TKey        $needle
      *
      * @param array<TKey, TValue> $haystack
+     * @param mixed               $needle
      *
      * @return never|TValue
      *

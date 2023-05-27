@@ -17,7 +17,7 @@ class Walker
      * @param string[] $lines
      */
     public function __construct(
-        array $lines
+        array $lines,
     ) {
         $this->lines = $lines;
     }

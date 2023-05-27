@@ -23,7 +23,7 @@ class AbstractPackage implements PackageInterface
      */
     public function __construct(
         Constraints $constraints,
-        string $version
+        string $version,
     ) {
         $this->constraints = $constraints;
         $this->version = $version;

@@ -11,7 +11,7 @@ abstract class AbstractConstraint implements ConstraintInterface
 
     public function __construct(
         string $name,
-        string $range
+        string $range,
     ) {
         $this->name = $name;
         $this->range = $range;

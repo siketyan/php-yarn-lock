@@ -16,7 +16,7 @@ class Constraint extends AbstractConstraint
     public function __construct(
         string $name,
         string $range,
-        ?string $prefix = null
+        ?string $prefix = null,
     ) {
         parent::__construct($name, $range);
 

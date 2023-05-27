@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Siketyan\YarnLock;
 
 use PHPUnit\Framework\TestCase;
-use Siketyan\YarnLock\Berry as Berry;
-use Siketyan\YarnLock\Classic as Classic;
 
 class YarnLockTest extends TestCase
 {

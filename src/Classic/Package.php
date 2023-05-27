@@ -17,9 +17,9 @@ class Package extends AbstractPackage
      */
     public function __construct(
         Constraints $constraints,
-        string      $version,
-        string      $resolution,
-        string $checksum
+        string $version,
+        string $resolution,
+        string $checksum,
     ) {
         parent::__construct($constraints, $version);
 
