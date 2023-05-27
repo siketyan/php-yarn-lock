@@ -27,13 +27,13 @@ class YarnLockTest extends TestCase
             ],
         ];
 
-        $actual = YarnLock::parse($lock);
-        $crlf = YarnLock::parse(str_replace("\n", "\r\n", $lock));
+        $actual = YarnLock::toArray($lock);
+        $crlf = YarnLock::toArray(str_replace("\n", "\r\n", $lock));
 
         $this->assertSame($expected, $actual);
         $this->assertSame($expected, $crlf);
 
-        $packages = YarnLock::parsePackages($actual);
+        $packages = YarnLock::packagesFromArray($actual);
         $this->assertCount(2, $packages);
         $this->assertContainsOnlyInstancesOf(Package::class, $packages);
     }
@@ -89,13 +89,13 @@ class YarnLockTest extends TestCase
             ],
         ];
 
-        $actual = YarnLock::parse($lock);
-        $crlf = YarnLock::parse(str_replace("\n", "\r\n", $lock));
+        $actual = YarnLock::toArray($lock);
+        $crlf = YarnLock::toArray(str_replace("\n", "\r\n", $lock));
 
         $this->assertSame($expected, $actual);
         $this->assertSame($expected, $crlf);
 
-        $packages = YarnLock::parsePackages($actual);
+        $packages = YarnLock::packagesFromArray($actual);
         $this->assertCount(4, $packages);
         $this->assertContainsOnlyInstancesOf(Berry\Package::class, $packages);
     }
@@ -151,13 +151,13 @@ class YarnLockTest extends TestCase
             ],
         ];
 
-        $actual = YarnLock::parse($lock);
-        $crlf = YarnLock::parse(str_replace("\n", "\r\n", $lock));
+        $actual = YarnLock::toArray($lock);
+        $crlf = YarnLock::toArray(str_replace("\n", "\r\n", $lock));
 
         $this->assertSame($expected, $actual);
         $this->assertSame($expected, $crlf);
 
-        $packages = YarnLock::parsePackages($actual);
+        $packages = YarnLock::packagesFromArray($actual);
         $this->assertCount(4, $packages);
         $this->assertContainsOnlyInstancesOf(Berry\Package::class, $packages);
     }

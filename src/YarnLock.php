@@ -19,7 +19,7 @@ class YarnLock
     /**
      * @phpstan-return YarnLockArray
      */
-    public static function parse(string $buffer): array
+    public static function toArray(string $buffer): array
     {
         $buffer = str_replace(self::CRLF, self::LF, $buffer);
         $lines = explode(self::LF, $buffer);
@@ -35,11 +35,19 @@ class YarnLock
     }
 
     /**
+     * @return list<PackageInterface<ConstraintInterface>>
+     */
+    public static function packages(string $buffer): array
+    {
+        return self::packagesFromArray(self::toArray($buffer));
+    }
+
+    /**
      * @phpstan-param YarnLockArray $yarnLock
      *
      * @return list<PackageInterface<ConstraintInterface>>
      */
-    public static function parsePackages(array $yarnLock): array
+    public static function packagesFromArray(array $yarnLock): array
     {
         /** @var list<YarnVersionInterface<PackageInterface<ConstraintInterface>>> $versions */
         $versions = [
