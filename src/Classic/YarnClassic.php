@@ -10,6 +10,9 @@ use Siketyan\YarnLock\Internal\AssertionException;
 use Siketyan\YarnLock\MalformedYarnLockException;
 use Siketyan\YarnLock\YarnVersionInterface;
 
+/**
+ * @implements YarnVersionInterface<Package>
+ */
 class YarnClassic implements YarnVersionInterface
 {
     public function supports(?array $metadata): bool

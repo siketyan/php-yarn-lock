@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace Siketyan\YarnLock;
 
-use Siketyan\YarnLock\Classic\Package;
-
+/**
+ * @template TPackage of PackageInterface
+ */
 interface YarnVersionInterface
 {
+    /**
+     * @param null|array{version: positive-int, cacheKey: positive-int} $metadata
+     */
     public function supports(?array $metadata): bool;
 
     /**
-     * @param array<string, array> $yarnLock
+     * @param array<string, array<string, mixed>> $yarnLock
      *
-     * @return Package
+     * @return list<TPackage>
      */
     public function packages(array $yarnLock): array;
 }

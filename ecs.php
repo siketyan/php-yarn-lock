@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
+use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
+use PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer;
 use Quartetcom\StaticAnalysisKit\EasyCodingStandard\Config;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
@@ -12,4 +15,12 @@ return function (ECSConfig $ecsConfig): void {
         '/src',
         '/tests',
     ]));
+
+    $ecsConfig->skip([
+        AssignmentInConditionSniff::class,
+        NotOperatorWithSuccessorSpaceFixer::class,
+        PhpdocNoEmptyReturnFixer::class => [
+            __DIR__ . '/src/Internal/Assert.php',
+        ],
+    ]);
 };

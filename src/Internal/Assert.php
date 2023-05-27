@@ -77,6 +77,8 @@ class Assert
     }
 
     /**
+     * @return null
+     *
      * @throws AssertionException
      */
     public static function null(mixed $value): mixed

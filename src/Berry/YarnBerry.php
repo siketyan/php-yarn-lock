@@ -10,6 +10,9 @@ use Siketyan\YarnLock\Internal\AssertionException;
 use Siketyan\YarnLock\MalformedYarnLockException;
 use Siketyan\YarnLock\YarnVersionInterface;
 
+/**
+ * @implements YarnVersionInterface<Package>
+ */
 class YarnBerry implements YarnVersionInterface
 {
     public function supports(?array $metadata): bool
@@ -32,8 +35,8 @@ class YarnBerry implements YarnVersionInterface
                     new Constraints(array_map(fn (string $c): Constraint => Constraint::parse(trim($c)), explode(',', $key))),
                     Assert::nonEmptyString(Assert::in('version', $value)),
                     Assert::nonEmptyString(Assert::in('resolution', $value)),
-                    Assert::nonEmptyString(Assert::in('languageName', $value)),
-                    Assert::nonEmptyString(Assert::in('linkType', $value)),
+                    Assert::nonEmptyString(Assert::in('languageName', $value)), // @phpstan-ignore-line
+                    Assert::nonEmptyString(Assert::in('linkType', $value)), // @phpstan-ignore-line
                     Assert::stringOrNull($value['checksum'] ?? null),
                 );
             } catch (AssertionException $e) {

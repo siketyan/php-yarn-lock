@@ -7,6 +7,9 @@ namespace Siketyan\YarnLock\Berry;
 use Siketyan\YarnLock\AbstractPackage;
 use Siketyan\YarnLock\Constraints;
 
+/**
+ * @extends AbstractPackage<Constraint>
+ */
 class Package extends AbstractPackage
 {
     public const LANGUAGE_NODE = 'node';
@@ -17,6 +20,8 @@ class Package extends AbstractPackage
 
     /**
      * @phpstan-param Constraints<Constraint> $constraints
+     * @phpstan-param self::LANGUAGE_* $languageName
+     * @phpstan-param self::LINK_* $linkType
      */
     public function __construct(
         Constraints $constraints,

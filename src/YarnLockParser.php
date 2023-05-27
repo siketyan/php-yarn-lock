@@ -19,6 +19,9 @@ class YarnLockParser
     ) {
     }
 
+    /**
+     * @return array<string, array<string, mixed>|string>
+     */
     public function parse(): array
     {
         $block = [];
@@ -61,6 +64,9 @@ class YarnLockParser
         return $block;
     }
 
+    /**
+     * @return list<string>
+     */
     private function parseLine(string $line): array
     {
         $tokens = [];

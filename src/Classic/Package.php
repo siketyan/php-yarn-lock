@@ -7,6 +7,9 @@ namespace Siketyan\YarnLock\Classic;
 use Siketyan\YarnLock\AbstractPackage;
 use Siketyan\YarnLock\Constraints;
 
+/**
+ * @extends AbstractPackage<Constraint>
+ */
 class Package extends AbstractPackage
 {
     /**

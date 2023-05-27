@@ -12,6 +12,7 @@ class YarnLockTest extends TestCase
     public function testYarn1x(): void
     {
         $lock = file_get_contents(__DIR__ . '/examples/yarn-1.x/yarn.lock');
+        $this->assertNotFalse($lock);
 
         $expected = [
             '@types/node@^18' => [
@@ -40,6 +41,7 @@ class YarnLockTest extends TestCase
     public function testYarn24(): void
     {
         $lock = file_get_contents(__DIR__ . '/examples/yarn-2.4/yarn.lock');
+        $this->assertNotFalse($lock);
 
         $expected = [
             '__metadata' => [
@@ -101,6 +103,7 @@ class YarnLockTest extends TestCase
     public function testYarn35(): void
     {
         $lock = file_get_contents(__DIR__ . '/examples/yarn-3.5/yarn.lock');
+        $this->assertNotFalse($lock);
 
         $expected = [
             '__metadata' => [
