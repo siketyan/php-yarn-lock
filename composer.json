@@ -10,15 +10,19 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.1",
         "symfony/yaml": "^5|^6"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "phpunit/phpunit": "^9.4"
+        "friendsofphp/php-cs-fixer": "^3.17",
+        "phpunit/phpunit": "^10.1",
+        "quartetcom/static-analysis-kit": "~8.1.15"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "quartetcom/static-analysis-kit": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -31,12 +35,19 @@
         }
     },
     "scripts": {
-        "lint": "php-cs-fixer fix -v --dry-run",
-        "fix": "php-cs-fixer fix -v",
-        "test": "phpunit ./tests",
-        "tests": [
-            "@lint",
-            "@test"
-        ]
+        "analyse": "@php static-analysis-kit analyse",
+        "fix": "@php static-analysis-kit fix",
+        "fix:all": "@php static-analysis-kit fix --risky --rector",
+        "fix:rector": "@php static-analysis-kit fix --rector",
+        "fix:risky": "@php static-analysis-kit fix --risky",
+        "test": "@php phpunit ./tests"
+    },
+    "scripts-descriptions": {
+        "analyse": "Analyses code in this project fully.",
+        "fix": "Tries to fix code in this project automatically.",
+        "fix:all": "Tries to fix code in this project automatically fully.",
+        "fix:rector": "Tries to fix code in this project automatically with rector enabled.",
+        "fix:risky": "Tries to fix code in this project automatically with risky rules.",
+        "test": "Runs the tests."
     }
 }

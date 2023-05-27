@@ -11,7 +11,7 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function int($value): int
+    public static function int(mixed $value): int
     {
         if (!\is_int($value)) {
             throw new AssertionException('int', \gettype($value));
@@ -25,7 +25,7 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function positiveInt($value): int
+    public static function positiveInt(mixed $value): int
     {
         if (($i = self::int($value)) <= 0) {
             throw new AssertionException('positive-int', 'negative-int or 0');
@@ -39,7 +39,7 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function string($value): string
+    public static function string(mixed $value): string
     {
         if (!\is_string($value)) {
             throw new AssertionException('string', \gettype($value));
@@ -53,7 +53,7 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function nonEmptyString($value): string
+    public static function nonEmptyString(mixed $value): string
     {
         if (($s = self::string($value)) === '') {
             throw new AssertionException('non-empty-string', 'empty string');
@@ -67,11 +67,11 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function stringOrNull($value): ?string
+    public static function stringOrNull(mixed $value): ?string
     {
         try {
             return self::string($value);
-        } catch (AssertionException $_) {
+        } catch (AssertionException) {
             return self::null($value);
         }
     }
@@ -81,7 +81,7 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function null($value)
+    public static function null(mixed $value): mixed
     {
         if ($value !== null) {
             throw new AssertionException('non-null value', 'null');
@@ -120,7 +120,7 @@ class Assert
      *
      * @throws AssertionException
      */
-    public static function in($needle, array $haystack)
+    public static function in(mixed $needle, array $haystack)
     {
         if (!\array_key_exists($needle, $haystack)) {
             throw new AssertionException("array contains key {$needle}", 'array without the key');

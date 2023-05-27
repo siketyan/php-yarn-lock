@@ -10,6 +10,9 @@ use Siketyan\YarnLock\Internal\AssertionException;
 use Siketyan\YarnLock\MalformedYarnLockException;
 use Siketyan\YarnLock\YarnVersionInterface;
 
+/**
+ * @implements YarnVersionInterface<Package>
+ */
 class YarnClassic implements YarnVersionInterface
 {
     public function supports(?array $metadata): bool
@@ -29,7 +32,7 @@ class YarnClassic implements YarnVersionInterface
         foreach ($yarnLock as $key => $value) {
             try {
                 $packages[] = new Package(
-                    new Constraints(array_map(fn (string $c) => Constraint::parse(trim($c)), explode(',', $key))),
+                    new Constraints(array_map(fn (string $c): Constraint => Constraint::parse(trim($c)), explode(',', $key))),
                     Assert::nonEmptyString(Assert::in('version', $value)),
                     Assert::nonEmptyString(Assert::in('resolved', $value)),
                     Assert::nonEmptyString(Assert::in('integrity', $value)),

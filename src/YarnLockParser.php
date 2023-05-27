@@ -14,14 +14,14 @@ class YarnLockParser
     private const TOKEN_COLON = ':';
     private const TOKEN_EMPTY = '';
 
-    private Walker $walker;
-
     public function __construct(
-        Walker $walker
+        private readonly Walker $walker,
     ) {
-        $this->walker = $walker;
     }
 
+    /**
+     * @return array<string, array<string, mixed>|string>
+     */
     public function parse(): array
     {
         $block = [];
@@ -30,7 +30,7 @@ class YarnLockParser
         while (($line = $this->walker->read()) !== null) {
             $currentIndent = strspn($line, self::INDENT_CHAR);
 
-            if ($currentIndent === strlen($line)) {
+            if ($currentIndent === \strlen($line)) {
                 $this->walker->step();
 
                 continue;
@@ -45,7 +45,7 @@ class YarnLockParser
             $tokens = $this->parseLine($line);
             $this->walker->step();
 
-            if (count($tokens) === 0) {
+            if ($tokens === []) {
                 continue;
             }
 
@@ -53,10 +53,10 @@ class YarnLockParser
             $last = $tokens[array_key_last($tokens)];
 
             if ($last === ':') {
-                $rest = implode(array_slice($tokens, 0, count($tokens) - 1));
+                $rest = implode('', \array_slice($tokens, 0, \count($tokens) - 1));
                 $block[$rest] = $this->parse();
             } else {
-                $rest = implode(array_slice($tokens, 1));
+                $rest = implode('', \array_slice($tokens, 1));
                 $block[$first] = $rest;
             }
         }
@@ -64,6 +64,9 @@ class YarnLockParser
         return $block;
     }
 
+    /**
+     * @return list<string>
+     */
     private function parseLine(string $line): array
     {
         $tokens = [];
@@ -72,7 +75,7 @@ class YarnLockParser
 
         foreach ([...str_split($line), self::TOKEN_EMPTY] as $char) {
             if ($char === self::TOKEN_HASH && !$inQuote) {
-                if (strlen($token) > 0) {
+                if ($token !== '') {
                     $tokens[] = $token;
                 }
 
@@ -88,7 +91,7 @@ class YarnLockParser
             }
 
             if ($char === self::TOKEN_SPACE && !$inQuote) {
-                if (strlen($token) > 0) {
+                if ($token !== '') {
                     $tokens[] = $token;
                     $token = '';
                 }
@@ -102,7 +105,7 @@ class YarnLockParser
                 continue;
             }
 
-            if ($char === self::TOKEN_EMPTY && strlen($token) > 0) {
+            if ($char === self::TOKEN_EMPTY && $token !== '') {
                 $tokens[] = $token;
 
                 continue;

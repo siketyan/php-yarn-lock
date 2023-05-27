@@ -14,8 +14,8 @@ class ConstraintTest extends TestCase
             'fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>',
         );
 
-        $this->assertSame('fsevents', $constraint->getName());
-        $this->assertSame('fsevents@^2.3.2#~builtin<compat/fsevents>', $constraint->getRange());
-        $this->assertSame('patch', $constraint->getPrefix());
+        $this->assertSame('fsevents', $constraint->name);
+        $this->assertSame('fsevents@^2.3.2#~builtin<compat/fsevents>', $constraint->range);
+        $this->assertSame('patch', $constraint->prefix);
     }
 }

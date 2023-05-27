@@ -20,7 +20,7 @@ class Constraint extends AbstractConstraint
 
         $lastIndex = array_key_last($parts);
         $last = $parts[$lastIndex];
-        $rest = array_slice($parts, 0, $lastIndex);
+        $rest = \array_slice($parts, 0, $lastIndex);
 
         try {
             return new self(
