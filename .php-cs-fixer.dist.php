@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-$finder = (new PhpCsFixer\Finder())
+require_once 'vendor/autoload.php';
+
+use Quartetcom\StaticAnalysisKit\PhpCsFixer\Config;
+
+$finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude('vendor')
 ;
 
-return (new PhpCsFixer\Config())
-    ->setRules([
-        '@PSR12' => true,
-        'array_syntax' => ['syntax' => 'short'],
-    ])
+return (new Config())
     ->setFinder($finder)
 ;
