@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "packageManager": "yarn@2.4.3",
+  "devDependencies": {
+    "@types/node": "^18",
+    "typescript": "4.4.4"
+  }
+}
