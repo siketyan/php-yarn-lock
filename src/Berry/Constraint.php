@@ -14,19 +14,14 @@ class Constraint extends AbstractConstraint
     public function __construct(
         string $name,
         string $range,
-        private readonly ?string $prefix = null,
+        public readonly ?string $prefix = null,
     ) {
         parent::__construct($name, $range);
     }
 
-    public function getPrefix(): ?string
-    {
-        return $this->prefix;
-    }
-
     public function hasSuffix(): bool
     {
-        return $this->getPrefix() !== '';
+        return $this->prefix !== '';
     }
 
     /**

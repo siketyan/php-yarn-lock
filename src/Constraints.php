@@ -13,7 +13,7 @@ class Constraints
      * @param non-empty-list<TConstraint> $constraints
      */
     public function __construct(
-        private readonly array $constraints,
+        public readonly array $constraints,
     ) {
     }
 

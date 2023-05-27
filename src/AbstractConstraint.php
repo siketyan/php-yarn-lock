@@ -7,8 +7,8 @@ namespace Siketyan\YarnLock;
 abstract class AbstractConstraint implements ConstraintInterface
 {
     public function __construct(
-        private readonly string $name,
-        private readonly string $range,
+        public readonly string $name,
+        public readonly string $range,
     ) {
     }
 

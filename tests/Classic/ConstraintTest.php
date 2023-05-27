@@ -12,15 +12,15 @@ class ConstraintTest extends TestCase
     {
         $constraint = Constraint::parse('typescript@^5.0.4');
 
-        $this->assertSame('typescript', $constraint->getName());
-        $this->assertSame('^5.0.4', $constraint->getRange());
+        $this->assertSame('typescript', $constraint->name);
+        $this->assertSame('^5.0.4', $constraint->range);
     }
 
     public function testParsePrefixed(): void
     {
         $constraint = Constraint::parse('@types/node@^18');
 
-        $this->assertSame('@types/node', $constraint->getName());
-        $this->assertSame('^18', $constraint->getRange());
+        $this->assertSame('@types/node', $constraint->name);
+        $this->assertSame('^18', $constraint->range);
     }
 }

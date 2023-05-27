@@ -18,19 +18,9 @@ class Package extends AbstractPackage
     public function __construct(
         Constraints $constraints,
         string $version,
-        private readonly string $resolvedUrl,
-        private readonly string $integrity,
+        public readonly string $resolvedUrl,
+        public readonly string $integrity,
     ) {
         parent::__construct($constraints, $version);
-    }
-
-    public function getResolvedUrl(): string
-    {
-        return $this->resolvedUrl;
-    }
-
-    public function getIntegrity(): string
-    {
-        return $this->integrity;
     }
 }

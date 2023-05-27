@@ -26,37 +26,11 @@ class Package extends AbstractPackage
     public function __construct(
         Constraints $constraints,
         string $version,
-        private readonly string $resolution,
-        private readonly string $languageName,
-        private readonly string $linkType,
-        private readonly ?string $checksum = null,
+        public readonly string $resolution,
+        public readonly string $languageName,
+        public readonly string $linkType,
+        public readonly ?string $checksum = null,
     ) {
         parent::__construct($constraints, $version);
-    }
-
-    public function getResolution(): string
-    {
-        return $this->resolution;
-    }
-
-    /**
-     * @return self::LANGUAGE_*
-     */
-    public function getLanguageName(): string
-    {
-        return $this->languageName;
-    }
-
-    /**
-     * @return self::LINK_*
-     */
-    public function getLinkType(): string
-    {
-        return $this->linkType;
-    }
-
-    public function getChecksum(): ?string
-    {
-        return $this->checksum;
     }
 }

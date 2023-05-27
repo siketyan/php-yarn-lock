@@ -13,12 +13,10 @@ class AbstractPackage implements PackageInterface
 {
     /**
      * @phpstan-param Constraints<TConstraint> $constraints
-     *
-     * @param Constraints<ConstraintInterface> $constraints
      */
     public function __construct(
-        private readonly Constraints $constraints,
-        private readonly string $version,
+        public readonly Constraints $constraints,
+        public readonly string $version,
     ) {
     }
 
