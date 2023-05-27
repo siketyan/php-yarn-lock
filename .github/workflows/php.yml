@@ -25,5 +25,15 @@ jobs:
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress
 
+      - name: Enable corepack for Yarn
+        run: corepack enable yarn
+
+      - name: Prepare Yarn projects for testing
+        working-directory: tests/examples
+        run: |
+          pushd yarn-1.x && yarn && popd
+          pushd yarn-2.4 && yarn && popd
+          pushd yarn-3.5 && yarn && popd
+
       - name: Run test suite
         run: composer run-script tests

@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "packageManager": "yarn@1.22.19",
+  "devDependencies": {
+    "@types/node": "^18",
+    "typescript": "^5"
+  }
+}

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Siketyan\YarnLock;
 
+use Symfony\Component\Yaml\Yaml;
+
 class YarnLock
 {
     private const CRLF = "\r\n";
@@ -13,9 +15,14 @@ class YarnLock
     {
         $buffer = str_replace(self::CRLF, self::LF, $buffer);
         $lines = explode(self::LF, $buffer);
-        $walker = new Walker($lines);
-        $parser = new YarnLockParser($walker);
 
-        return $parser->parse();
+        if ($lines[1] === '# yarn lockfile v1') {
+            $walker = new Walker($lines);
+            $parser = new YarnLockParser($walker);
+
+            return $parser->parse();
+        }
+
+        return Yaml::parse($buffer);
     }
 }
