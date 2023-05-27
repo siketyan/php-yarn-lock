@@ -23,7 +23,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Siketyan\YarnLock\YarnLock;
 
 var_dump(
-    YarnLock::parse(
+    YarnLock::toArray(
         file_get_contents('./yarn.lock'),
     ),
 );
@@ -80,6 +80,16 @@ namespace Siketyan\YarnLock;
 
 class YarnLock
 {
-    public static function parse(string $buffer, string $eol = "\n");
+    public static function toArray(string $buffer): array;
+    
+    /**
+     * @return list<PackageInterface>
+     */
+    public static function packages(string $buffer): array;
+    
+    /**
+     * @return list<PackageInterface>
+     */
+    public static function packagesFromArray(array $yarnLock): array;
 }
 ```
