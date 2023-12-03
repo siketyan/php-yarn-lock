@@ -13,6 +13,8 @@ jobs:
       matrix:
         php:
           - '8.1'
+          - '8.2'
+          - '8.3'
     steps:
       - uses: actions/checkout@v3
 
@@ -41,6 +43,10 @@ jobs:
           key: ${{ runner.os }}-analyser-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-analyser-${{ matrix.php }}-
+
+      - name: Downgrade Symfony to 6
+        if: steps.composer-cache.outputs.cache-hit != 'true' && matrix.php == '8.1'
+        run: composer update 'symfony/*' --prefer-dist --no-progress
 
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
