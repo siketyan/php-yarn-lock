@@ -14,4 +14,4 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: siketyan/loxcan@v0.8.0
+      - uses: siketyan/loxcan@v0.9.1
