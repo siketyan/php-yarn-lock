@@ -9,9 +9,13 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: siketyan/loxcan@v0.8.0
+      - uses: siketyan/loxcan@v0.9.1
